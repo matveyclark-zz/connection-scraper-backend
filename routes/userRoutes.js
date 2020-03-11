@@ -3,11 +3,12 @@ const express = require('express')
 const router = express.Router()
 const authController = require('../controllers/authController')
 const passport = require('passport')
+const passpostConfig = require('../config/passportConfig')
 
 // route
 router.route('/auth/linkedin')
     .get(passport.authenticate('linkedin', {
-        scope: ['r_emailaddress', 'r_liteprofile']
+        scope: ['r_emailaddress', 'r_basicprofile'],
     }))
 
 router.route('/auth/logout')
