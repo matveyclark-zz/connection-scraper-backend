@@ -5,7 +5,7 @@ const authController = require('../controllers/authController')
 const passport = require('passport')
 const passpostConfig = require('../passportConfig')
 
-// route
+// routes
 router.route('/auth/linkedin')
     .get(passport.authenticate('linkedin', {
         scope: ['r_emailaddress', 'r_liteprofile']

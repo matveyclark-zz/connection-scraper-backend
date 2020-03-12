@@ -3,10 +3,12 @@ const express = require('express')
 const userRoutes = require('./routes/userRoutes')
 const AppError = require('./utils/appError')
 const globalErrorHandler = require('./controllers/errorController')
+const morgan = require('morgan')
 
 // app
 const app = express()
 app.use(express.json())
+app.use(morgan('dev'))
 
 // routing middleware
 app.use('/api/v1/users', userRoutes)
