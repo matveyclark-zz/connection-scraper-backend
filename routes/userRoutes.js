@@ -17,5 +17,7 @@ router.route('/auth/linkedin/redirect')
 router.route('/auth/logout')
     .get(authController.logout)
 
+// user routes
+
 // export
 module.exports = router;
