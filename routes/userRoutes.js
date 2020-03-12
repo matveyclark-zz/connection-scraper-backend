@@ -2,6 +2,7 @@
 const express = require('express')
 const router = express.Router()
 const authController = require('../controllers/authController')
+const userController = require('../controllers/userController')
 const passport = require('passport')
 const passpostConfig = require('../passportConfig')
 
@@ -18,6 +19,8 @@ router.route('/auth/logout')
     .get(authController.logout)
 
 // user routes
+router.route('/login/success')
+    .get(userController.serveUser)
 
 // export
 module.exports = router;
