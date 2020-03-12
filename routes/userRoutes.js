@@ -8,11 +8,11 @@ const passpostConfig = require('../passportConfig')
 // route
 router.route('/auth/linkedin')
     .get(passport.authenticate('linkedin', {
-        scope: ['r_emailaddress', 'r_basicprofile']
+        scope: ['r_emailaddress', 'r_liteprofile']
     }))
 
 router.route('/auth/linkedin/redirect')
-    .get(authController.redirect)
+    .get(passport.authenticate('linkedin'), authController.redirect)
 
 router.route('/auth/logout')
     .get(authController.logout)
