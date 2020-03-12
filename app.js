@@ -3,10 +3,6 @@ const express = require('express')
 const userRoutes = require('./routes/userRoutes')
 const AppError = require('./utils/appError')
 const globalErrorHandler = require('./controllers/errorController')
-const dotEnv = require('dotenv')
-
-// config
-dotEnv.config({ path: './config.env' })
 
 // app
 const app = express()
