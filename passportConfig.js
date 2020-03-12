@@ -4,6 +4,17 @@ const linkedinStrategy = require('passport-linkedin-oauth2').Strategy
 const User = require('./models/userModel')
 require('dotenv').config({ path: './config.env' })
 
+// serialize
+passport.serializeUser((user, done) => {
+	done(null, user.id)
+})
+
+// de-serialize
+passport.deserializeUser(async (id, done) => {
+	const user = await User.findById(id)
+	done(null, user)
+})
+
 // config
 passport.use(new linkedinStrategy({
 	callbackURL: 'http://localhost:3000/api/v1/users/auth/linkedin/redirect',
@@ -11,14 +22,14 @@ passport.use(new linkedinStrategy({
 	clientSecret: process.env.CLIENT_SECRET
 }, async (accessToken, refreshToken, profileInfo, done) => {
 	const { id, displayName } = profileInfo
-	const found = await User.findOne({ linkedinId: id })
-	if(found) {
-		console.log(`User is: ${found}`)
+	const foundUser = await User.findOne({ linkedinId: id })
+	if(foundUser) {
+		done(null, foundUser)
 	} else {
 		const user = await User.create({
 			linkedinId: id,
 			username: displayName
 		})
-		console.log('User created 💥')
+		done(null, user)
 	}
 }));
