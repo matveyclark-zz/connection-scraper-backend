@@ -4,7 +4,7 @@ require('dotenv').config({ path: './config.env' })
 const mongoose = require('mongoose')
 
 // server
-const port = 3000
+const port = 3001
 app.listen(port, () => {
 	console.log(`Server running on port ${port} 👍`)
 })

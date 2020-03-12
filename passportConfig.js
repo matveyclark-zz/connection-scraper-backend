@@ -17,7 +17,7 @@ passport.deserializeUser(async (id, done) => {
 
 // config
 passport.use(new linkedinStrategy({
-	callbackURL: 'http://localhost:3000/api/v1/users/auth/linkedin/redirect',
+	callbackURL: 'http://localhost:3001/api/v1/users/auth/linkedin/redirect',
 	clientID: process.env.CLIENT_ID,
 	clientSecret: process.env.CLIENT_SECRET
 }, async (accessToken, refreshToken, profileInfo, done) => {
